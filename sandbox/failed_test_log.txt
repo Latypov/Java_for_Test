@@ -1,0 +1,29 @@
+﻿Microsoft Windows [Version 10.0.10240]
+(c) 2015 Microsoft Corporation. All rights reserved.
+
+C:\WORK\GitHub\Java_for_Test\sandbox>C:\Tools\gradle-2.11\bin\gradle build
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'C:\WORK\GitHub\Java_for_Test\sandbox\build.gradle' line: 1
+
+* What went wrong:
+A problem occurred evaluating root project 'sandbox'.
+> Could not find method ?apply() for arguments [{plugin=java}] on root project 'sandbox'.
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+BUILD FAILED
+
+Total time: 2.152 secs
+
+C:\WORK\GitHub\Java_for_Test\sandbox>where java
+c:\Program Files\Java\jdk1.8.0_66\bin\java.exe
+C:\ProgramData\Oracle\Java\javapath\java.exe
+
+C:\WORK\GitHub\Java_for_Test\sandbox>where javac
+c:\Program Files\Java\jdk1.8.0_66\bin\javac.exe
+
+C:\WORK\GitHub\Java_for_Test\sandbox>
