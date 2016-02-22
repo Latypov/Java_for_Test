@@ -1,3 +1,5 @@
+package my.javapr.sandbox;
+
 public class My1 {
 
   public static void main(String[] args) {
