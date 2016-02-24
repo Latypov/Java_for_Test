@@ -5,12 +5,8 @@ package my.javapr.sandbox;
  */
 public class RunPoint {
   public static void main(String[] args) {
-    Point p1 = new Point();
-    p1.x = 0;
-    p1.y = 0;
-    Point p2 = new Point();
-    p2.x = 3;
-    p2.y = 4;
+    Point p1 = new Point(0, -3);
+    Point p2 = new Point(6, 9);
     System.out.println("Distance between two Points: p1(" + p1.x + "," + p1.y + ") and p2(" + p2.x + "," +
             p2.y + ") = " + distance(p1, p2));
   }
