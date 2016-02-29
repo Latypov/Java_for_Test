@@ -10,5 +10,7 @@ public class Square {
   public Square(double l) {
     this.l = l;
   }
-
+  public double area(Square s) {
+    return s.l * s.l;
+  }
 }

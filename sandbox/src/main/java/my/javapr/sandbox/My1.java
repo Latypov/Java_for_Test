@@ -21,7 +21,4 @@ public class My1 {
   public static double area(Rectangle r) {
     return r.a * r.b;
   }
-
-
-
 }
