@@ -1,5 +1,6 @@
-package my.javapr.addressbook;
+package my.javapr.addressbook.tests;
 
+import my.javapr.addressbook.model.ContactData;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
