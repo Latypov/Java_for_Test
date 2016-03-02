@@ -38,9 +38,9 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public void goToAddNewContactPage() {
-    wd.findElement(By.linkText("add new")).click();
-  }
+  //public void goToAddNewContactPage() {
+    //wd.findElement(By.linkText("add new")).click();
+  //}
 
   public ContactHelper getContactHelper() {
     return contactHelper;
