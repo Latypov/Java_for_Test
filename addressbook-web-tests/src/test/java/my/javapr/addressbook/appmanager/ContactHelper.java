@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * Created by allan on 3/1/2016.
+ * Created by allan on 3/2/2016.
  */
 public class ContactHelper {
   FirefoxDriver wd;
