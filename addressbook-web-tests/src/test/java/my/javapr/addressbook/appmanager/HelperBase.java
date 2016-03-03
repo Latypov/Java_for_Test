@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * Created by allan on 3/1/2016.
  */
