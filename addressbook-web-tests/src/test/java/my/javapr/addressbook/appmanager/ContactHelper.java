@@ -2,6 +2,7 @@ package my.javapr.addressbook.appmanager;
 
 import my.javapr.addressbook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
@@ -17,8 +18,12 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home page"));
   }
 
+  public void initContactCreation() {
+    click(By.linkText("add new"));
+  }
+
   public void submitContactCreation() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
   public void fillContactForm(ContactData contactData) {
@@ -28,19 +33,21 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), contactData.getEmail());
  }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
-  }
+  public void selectContact() {    click(By.name("selected[]"));  }
 
   public void deleteSelectedContacts() {
     click(By.xpath("//input[@value='Delete']"));
   }
 
   public void initContactModification() {
-    click(By.xpath("//img[@alt='Edit']"));
+    click(By.cssSelector("img[alt='Edit']"));
   }
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public void confirmContactsDeletion() {
+    wd.switchTo().alert().accept();
   }
 }
