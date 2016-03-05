@@ -2,17 +2,15 @@ package my.javapr.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
-import static org.testng.Assert.assertTrue;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by allan on 3/1/2016.
  */
 public class HelperBase {
-  protected FirefoxDriver wd;
+  protected WebDriver wd;
 
-  public HelperBase(FirefoxDriver wd) {
+  public HelperBase(WebDriver wd) {
     this.wd = wd;
   }
 
