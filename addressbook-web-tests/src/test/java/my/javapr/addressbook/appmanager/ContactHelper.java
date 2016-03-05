@@ -3,6 +3,7 @@ package my.javapr.addressbook.appmanager;
 import my.javapr.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by allan on 3/2/2016.
@@ -29,8 +30,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getMobphone());
-    type(By.name("email"), contactData.getEmail());
- }
+
+    if (isElementPresent(By.name("new_group"))) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    }
+  }
 
   public void selectContact() {    click(By.name("selected[]"));  }
 
