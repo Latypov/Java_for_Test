@@ -19,9 +19,13 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
+  private String browser;
+
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
 
   public void init() {
-    String browser = BrowserType.EDGE;
     if (browser == BrowserType.FIREFOX) {
       wd = new FirefoxDriver();
     } else if (browser == BrowserType.CHROME) {
