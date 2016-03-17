@@ -1,6 +1,7 @@
 package my.javapr.addressbook.tests;
 
 import my.javapr.addressbook.model.ContactData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -12,12 +13,15 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() {
     app.getNavigationHelper().goToHomePage();
     if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Peter", "Sidoroff", "5557774455", "test2"));
+      app.getContactHelper().createContact(new ContactData("Peter", "Sidoroff", "5557774455", "test1"));
     }
-    app.getContactHelper().selectContact();
+    int before = app.getContactHelper().getContactCount();
+    app.getContactHelper().selectContact(before - 1);
     app.getContactHelper().deleteSelectedContacts();
     app.getContactHelper().isAlertPresent();
     app.getContactHelper().confirmContactsDeletion();
-  //  app.getContactHelper().returnToHomePage();
+    app.getNavigationHelper().goToHomePage();
+    int after = app.getContactHelper().getContactCount();
+    Assert.assertEquals(after, before - 1);
   }
 }
