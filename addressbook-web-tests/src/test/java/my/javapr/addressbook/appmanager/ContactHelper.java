@@ -36,9 +36,9 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getMobphone());
 
-    if (isElementPresent(By.name("new_group"))) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    }
+//    if (isElementPresent(By.name("new_group"))) {
+//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+//    }
   }
 
   public void selectContact(int index) { wd.findElements(By.name("selected[]")).get(index).click();  }
@@ -79,8 +79,11 @@ public class ContactHelper extends HelperBase {
 //    List<WebElement> elements = wd.findElements(By.id("id"));
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData(null, null, null, null);
+      String id =(element.findElement(By.tagName("input")).getAttribute("id"));
+      String lastname = element.findElement(By.xpath("//td[2]")).getText();
+      String firstname = element.findElement(By.xpath("//td[3]")).getText();
+      String  mobphone= element.findElement(By.xpath("//td[6]")).getText();
+      ContactData contact = new ContactData(id, firstname, lastname, mobphone);
       contacts.add(contact);
     }
     return contacts;
