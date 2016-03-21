@@ -1,11 +1,9 @@
 package my.javapr.addressbook.appmanager;
 
 import my.javapr.addressbook.model.ContactData;
-import my.javapr.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +53,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void confirmContactsDeletion() {
+  public void confirmDeletion() {
     wd.switchTo().alert().accept();
   }
 
@@ -63,14 +61,21 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContact(ContactData contact) {
+  public void create(ContactData contact) {
     initContactCreation();
     fillContactForm(contact);
     submitContactCreation();
     returnToHomePage();
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContacts();
+    isAlertPresent();
+    confirmDeletion();
+  }
+
+  public void modify(int index, ContactData contact) {
     selectContact(index);
     initContactModification();
     fillContactForm(contact);
@@ -78,13 +83,8 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public int getContactCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
-
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-//    List<WebElement> elements = wd.findElements(By.id("id"));
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
