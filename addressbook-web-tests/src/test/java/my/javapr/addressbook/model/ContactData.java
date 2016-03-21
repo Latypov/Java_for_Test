@@ -1,30 +1,32 @@
 package my.javapr.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String mobphone;
-//  private final String group;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String mobphone;
 
-  public ContactData(String firstname, String lastname, String mobphone) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.mobphone = mobphone;
-//    this.group = group;
-  }
-
-  public ContactData(int id, String firstname, String lastname, String mobphone) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.mobphone = mobphone;
-//    this.group = group;
-  }
   public int getId() { return id;  }
 
-  public void setId(int id) { this.id = id; }
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withMobphone(String mobphone) {
+    this.mobphone = mobphone;
+    return this;
+  }
 
   public String getFirstname() {
     return firstname;

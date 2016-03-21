@@ -16,7 +16,8 @@ public class ContactDeletionTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().homePage();
     if (! app.contact().isThereAContact()) {
-      app.contact().create(new ContactData("Peter", "Sidoroff", "5557774455"));
+      app.contact().create(new ContactData().
+              withFirstname("Peter").withLastname("Sidoroff").withMobphone("5557774455"));
     }
   }
 
@@ -24,7 +25,7 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() {
     app.goTo().homePage();
     if (app.group().list().size() == 0) {
-      app.contact().create(new ContactData("Peter", "Sidoroff", "5557774455"));
+      app.contact().create(new ContactData().withFirstname("Peter").withLastname("Sidoroff").withMobphone("5557774455"));
     }
     List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
