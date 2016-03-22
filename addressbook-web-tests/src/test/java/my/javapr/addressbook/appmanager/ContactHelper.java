@@ -5,8 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by allan on 3/2/2016.
@@ -39,7 +40,7 @@ public class ContactHelper extends HelperBase {
 //    }
   }
 
-  public void selectContact(int index) { wd.findElements(By.name("selected[]")).get(index).click();  }
+  public void selectContactById(int id) { wd.findElement(By.cssSelector("input[id='" + id +"']")).click();  }
 
   public void deleteSelectedContacts() {
     click(By.xpath("//input[@value='Delete']"));
@@ -68,23 +69,23 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContacts();
     isAlertPresent();
     confirmDeletion();
   }
 
-  public void modify(int index, ContactData contact) {
-    selectContact(index);
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
     initContactModification();
     fillContactForm(contact);
     submitContactModification();
     returnToHomePage();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
