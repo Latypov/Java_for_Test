@@ -1,6 +1,7 @@
 package my.javapr.addressbook.appmanager;
 
 import my.javapr.addressbook.model.ContactData;
+import my.javapr.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -84,8 +85,8 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = new HashSet<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
