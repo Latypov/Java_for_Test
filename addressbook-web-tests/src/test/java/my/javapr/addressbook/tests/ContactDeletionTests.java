@@ -2,14 +2,8 @@ package my.javapr.addressbook.tests;
 
 import my.javapr.addressbook.model.ContactData;
 import my.javapr.addressbook.model.Contacts;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -25,7 +19,7 @@ public class ContactDeletionTests extends TestBase {
     app.goTo().homePage();
     if (! app.contact().isThereAContact()) {
       app.contact().create(new ContactData().
-              withFirstname("Peter").withLastname("Sidoroff").withMobphone("5557774455"));
+              withFirstname("Peter").withLastname("Sidoroff").withMobilePhone("5557774455"));
     }
   }
 
@@ -33,7 +27,7 @@ public class ContactDeletionTests extends TestBase {
   public void testContactDeletion() {
     app.goTo().homePage();
     if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstname("Peter").withLastname("Sidoroff").withMobphone("5557774455"));
+      app.contact().create(new ContactData().withFirstname("Peter").withLastname("Sidoroff").withMobilePhone("5557774455"));
     }
     Contacts before = app.contact().all();
     ContactData deletedContact = before.iterator().next();
