@@ -1,8 +1,6 @@
 package my.javapr.addressbook.tests;
 
 import my.javapr.addressbook.model.ContactData;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -33,7 +31,7 @@ public class ContactPhoneTests extends TestBase {
   }
 
   public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
-  }
+  return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+}
 }
 

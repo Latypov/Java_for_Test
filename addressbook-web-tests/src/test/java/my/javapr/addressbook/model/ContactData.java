@@ -1,7 +1,7 @@
 package my.javapr.addressbook.model;
 
 public class ContactData {
-//  private int id = Integer.MAX_VALUE;
+  //  private int id = Integer.MAX_VALUE;
   private int id;
   private String lastname;
   private String firstname;
@@ -11,6 +11,14 @@ public class ContactData {
   private String allPhones;
   private String address;
   private String email;
+  private String contactDetails;
+
+  public String getContactDetails() { return contactDetails;  }
+
+  public ContactData withContactDetails(String contactDetails) {
+    this.contactDetails = contactDetails;
+    return this;
+  }
 
   public String getAddress() { return address;  }
 
@@ -86,21 +94,6 @@ public class ContactData {
 //  public String getGroup() {    return group;  }
 
   @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", lastname='" + lastname + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
-            ", allPhones='" + allPhones + '\'' +
-            ", address='" + address + '\'' +
-            ", email='" + email + '\'' +
-            '}';
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -115,7 +108,8 @@ public class ContactData {
     if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
     if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
     if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    return email != null ? email.equals(that.email) : that.email == null;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    return contactDetails != null ? contactDetails.equals(that.contactDetails) : that.contactDetails == null;
 
   }
 
@@ -130,6 +124,23 @@ public class ContactData {
     result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
     result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (contactDetails != null ? contactDetails.hashCode() : 0);
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", lastname='" + lastname + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", address='" + address + '\'' +
+            ", email='" + email + '\'' +
+            ", contactDetails='" + contactDetails + '\'' +
+            '}';
   }
 }
