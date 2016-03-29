@@ -28,16 +28,16 @@ public class ContactDetailsTest extends TestBase {
   private String mergeEditForm(ContactData contact) {
     return Arrays.asList(contact.getFirstname(), contact.getLastname(), contact.getAddress(), contact.getHomePhone()
             , contact.getMobilePhone(), contact.getWorkPhone(), contact.getEmail()).stream()
-            .filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
+            .filter((s) -> !s.equals("")).map(ContactDetailsTest::cleaned).collect(Collectors.joining(""));
   }
 
   private String mergeDetailsForm(ContactData contact) {
     return Arrays.asList(contact.getContactDetails()).stream()
-            .filter((s) -> !s.equals("")).map(ContactDetailsTest::cleaned).collect(Collectors.joining("\n"));
+            .filter((s) -> !s.equals("")).map(ContactDetailsTest::cleaned).collect(Collectors.joining(""));
   }
 
   public static String cleaned(String edit) {
-    return edit.replaceFirst("\\s", "\\\\n").replaceAll("\\n\\n", "\\\\n").replaceAll("(H: )", "")
-            .replaceAll("(M: )", "").replaceAll("(W: )", "").replaceAll("\\(www.mail.com\\)", "").replaceFirst("\\s$", "");
+    return edit.replaceFirst("\\s", "").replaceAll("\\n", "").replaceAll("(H:)", "")
+            .replaceAll("(M: )", "").replaceAll("(W:)", "");
   }
 }
