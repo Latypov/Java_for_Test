@@ -1,5 +1,7 @@
 package my.javapr.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
   //  private int id = Integer.MAX_VALUE;
   private int id;
@@ -12,12 +14,23 @@ public class ContactData {
   private String address;
   private String email;
   private String contactDetails;
+  private File photo;
 
   public String getContactDetails() { return contactDetails;  }
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public ContactData withContactDetails(String contactDetails) {
     this.contactDetails = contactDetails;
     return this;
+
   }
 
   public String getAddress() { return address;  }

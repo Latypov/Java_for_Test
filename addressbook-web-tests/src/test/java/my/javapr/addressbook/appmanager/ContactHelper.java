@@ -33,6 +33,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getMobilePhone());
+    attach(By.name("photo"), contactData.getPhoto());
 
 //    if (isElementPresent(By.name("new_group"))) {
 //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
