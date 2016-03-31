@@ -1,13 +1,21 @@
 package my.javapr.addressbook.model;
 
 import java.io.File;
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+@XStreamAlias("contact")
 public class ContactData {
-  //  private int id = Integer.MAX_VALUE;
-  private int id;
+  @XStreamOmitField
+  private int id = Integer.MAX_VALUE;
+//  private int id;
+  @Expose
   private String lastname;
+  @Expose
   private String firstname;
   private String homePhone;
+  @Expose
   private String mobilePhone;
   private String workPhone;
   private String allPhones;
