@@ -4,41 +4,77 @@ import java.io.File;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
+
   @XStreamOmitField
+  @Id
+  @Column(name = "Id")
   private int id = Integer.MAX_VALUE;
 //  private int id;
+
   @Expose
+  @Column(name = "lastname")
   private String lastname;
+
   @Expose
+  @Column(name = "firstname")
   private String firstname;
+
+  @Transient
+  private String group;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+
+  @Transient
+  @Column(name = "allPhones")
+  @Type(type = "text")
   private String allPhones;
+
+  @Transient
   private String address;
+
+  @Transient
   private String email;
+
+  @Transient
   private String contactDetails;
-  private File photo;
+
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public String getContactDetails() { return contactDetails;  }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
   public ContactData withContactDetails(String contactDetails) {
     this.contactDetails = contactDetails;
     return this;
-
   }
 
   public String getAddress() { return address;  }
@@ -52,6 +88,13 @@ public class ContactData {
 
   public ContactData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public String getGroup() { return group; }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
     return this;
   }
 
@@ -112,8 +155,6 @@ public class ContactData {
 
   public String getWorkPhone() { return workPhone;  }
 
-//  public String getGroup() {    return group;  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -157,11 +198,11 @@ public class ContactData {
             ", firstname='" + firstname + '\'' +
             ", homePhone='" + homePhone + '\'' +
             ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
-            ", allPhones='" + allPhones + '\'' +
-            ", address='" + address + '\'' +
-            ", email='" + email + '\'' +
-            ", contactDetails='" + contactDetails + '\'' +
+//            ", workPhone='" + workPhone + '\'' +
+//            ", allPhones='" + allPhones + '\'' +
+//            ", address='" + address + '\'' +
+//            ", email='" + email + '\'' +
+//            ", contactDetails='" + contactDetails + '\'' +
             '}';
   }
 }
