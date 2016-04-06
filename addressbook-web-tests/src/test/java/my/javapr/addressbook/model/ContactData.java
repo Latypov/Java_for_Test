@@ -16,8 +16,8 @@ public class ContactData {
   @XStreamOmitField
   @Id
   @Column(name = "Id")
-  private int id = Integer.MAX_VALUE;
-//  private int id;
+//  private int id = Integer.MAX_VALUE;
+  private int id;
 
   @Expose
   @Column(name = "lastname")
@@ -156,6 +156,15 @@ public class ContactData {
   public String getWorkPhone() { return workPhone;  }
 
   @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", lastname='" + lastname + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            '}';
+  }
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -165,44 +174,15 @@ public class ContactData {
     if (id != that.id) return false;
     if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
-    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
-    if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
-    if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (email != null ? !email.equals(that.email) : that.email != null) return false;
-    return contactDetails != null ? contactDetails.equals(that.contactDetails) : that.contactDetails == null;
+    return mobilePhone != null ? mobilePhone.equals(that.mobilePhone) : that.mobilePhone == null;
 
   }
-
   @Override
   public int hashCode() {
     int result = id;
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-    result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
     result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
-    result = 31 * result + (workPhone != null ? workPhone.hashCode() : 0);
-    result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
-    result = 31 * result + (contactDetails != null ? contactDetails.hashCode() : 0);
     return result;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", lastname='" + lastname + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-//            ", workPhone='" + workPhone + '\'' +
-//            ", allPhones='" + allPhones + '\'' +
-//            ", address='" + address + '\'' +
-//            ", email='" + email + '\'' +
-//            ", contactDetails='" + contactDetails + '\'' +
-            '}';
   }
 }

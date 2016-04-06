@@ -46,9 +46,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void initContactModification() {
-    click(By.cssSelector("img[alt='Edit']"));
-  }
+  public void initContactModification() {  click(By.cssSelector("img[alt='Edit']"));  }
 
   public void submitContactModification() {
     click(By.name("update"));
@@ -81,8 +79,9 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    initContactModification();
+//    selectContactById(contact.getId());
+    initContactModificationById(contact.getId());
+//    initContactModification();
     fillContactForm(contact);
     submitContactModification();
     returnToHomePage();

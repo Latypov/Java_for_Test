@@ -54,7 +54,7 @@ public class ContactDataGenerator {
       System.out.println("Unrecognized format " + format);
     }
   }
-
+//Edit config: Program arguments: -f src/test/resorces/groups.json -c 3 -d json
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
@@ -62,7 +62,7 @@ public class ContactDataGenerator {
       writer.write(json);
     }
   }
-
+//Edit config: Program arguments: -f src/test/resorces/groups.xml -c 3 -d xml
   private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
     XStream xstream = new XStream();
     xstream.processAnnotations(ContactData.class);
@@ -71,7 +71,7 @@ public class ContactDataGenerator {
       writer.write(xml);
     }
   }
-
+//Edit config: Program arguments: -f src/test/resorces/groups.csv -c 3
   private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
     try (Writer writer = new FileWriter(file)) {
