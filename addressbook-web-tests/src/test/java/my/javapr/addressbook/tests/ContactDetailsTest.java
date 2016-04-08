@@ -37,7 +37,7 @@ public class ContactDetailsTest extends TestBase {
   }
 
   public static String cleaned(String edit) {
-    return edit.replaceFirst("\\s", "").replaceAll("\\n", "").replaceAll("(H:)", "")
-            .replaceAll("(M: )", "").replaceAll("(W:)", "");
+    return edit.replaceAll("\\s", "").replaceAll("\\n", "").replaceAll("(H:)", "")
+            .replaceAll("(M:)", "").replaceAll("(W:)", "");
   }
 }
