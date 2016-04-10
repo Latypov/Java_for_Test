@@ -17,6 +17,7 @@ import org.testng.annotations.BeforeSuite;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -69,10 +70,10 @@ public class TestBase {
     if (Boolean.getBoolean("verifyUI")) {
       Contacts dbContacts = app.db().contacts();
       Contacts uiContacts = app.contact().all();
-      assertThat(uiContacts, equalTo(dbContacts.stream()
-              .map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname())
-                      .withLastname(g.getLastname()).withMobilePhone(g.getMobilePhone()))
-              .collect(Collectors.toSet())));
+      assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname())
+              .withLastname(g.getLastname()).withMobilePhone(g.getMobilePhone())).map(TestBase::cleaned).collect(Collectors.toSet())));
     }
   }
+
+  private static  Set<ContactData> cleaned(ContactData phone) {return phone.replaceAll("(\\d+\\s\\d+)", "(\\d+)");  }
 }

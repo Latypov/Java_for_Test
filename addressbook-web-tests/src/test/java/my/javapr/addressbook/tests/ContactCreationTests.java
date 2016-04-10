@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import my.javapr.addressbook.model.ContactData;
 import my.javapr.addressbook.model.Contacts;
+import my.javapr.addressbook.model.Groups;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -54,6 +55,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromXML")
   public void testContactCreation(ContactData contact) {
+    Groups groups = app.db().groups();
     app.goTo().homePage();
     Contacts before = (Contacts) app.db().contacts();
     File photo = new File("src/test/resources/TC.png");

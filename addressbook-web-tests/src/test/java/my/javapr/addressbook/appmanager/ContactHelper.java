@@ -97,10 +97,11 @@ public class ContactHelper extends HelperBase {
       String firstname = cells.get(2).getText();
       String address = cells.get(3).getText();
       String email = cells.get(4).getText();
+      String mobilePhone = cells.get(5).getText();
       String allPhones = cells.get(5).getText();
       contacts.add(new ContactData()
               .withId(id).withFirstname(firstname).withLastname(lastname).withAddress(address)
-              .withEmail(email).withAllPhones(allPhones));
+              .withEmail(email).withMobilePhone(mobilePhone));
     }
     return contacts;
   }

@@ -1,6 +1,9 @@
 package my.javapr.addressbook.model;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
@@ -26,9 +29,6 @@ public class ContactData {
   @Expose
   @Column(name = "firstname")
   private String firstname;
-
-  @Transient
-  private String group;
 
   @Column(name = "home")
   @Type(type = "text")
@@ -61,6 +61,12 @@ public class ContactData {
   @Type(type = "text")
   private String photo;
 
+  @ManyToMany
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
+          , inverseJoinColumns = @JoinColumn(name = "group_id") )
+
+  private Set<GroupData> groups = new HashSet<GroupData>();
+
   public String getContactDetails() { return contactDetails;  }
 
   public File getPhoto() {
@@ -91,19 +97,15 @@ public class ContactData {
     return this;
   }
 
-  public String getGroup() { return group; }
-
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public String getAllPhones() {
     return allPhones;
   }
 
+  public Groups getGroups() {  return new Groups(groups);  }
+
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
+
     return this;
   }
 
@@ -175,8 +177,8 @@ public class ContactData {
     if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
     return mobilePhone != null ? mobilePhone.equals(that.mobilePhone) : that.mobilePhone == null;
-
   }
+
   @Override
   public int hashCode() {
     int result = id;
