@@ -64,7 +64,6 @@ public class ContactData {
   @ManyToMany
   @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id")
           , inverseJoinColumns = @JoinColumn(name = "group_id") )
-
   private Set<GroupData> groups = new HashSet<GroupData>();
 
   public String getContactDetails() { return contactDetails;  }
@@ -102,6 +101,8 @@ public class ContactData {
   }
 
   public Groups getGroups() {  return new Groups(groups);  }
+
+  public ContactData inGroup(GroupData group) {  groups.add(group);  return this; }
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;

@@ -56,9 +56,9 @@ public class ContactCreationTests extends TestBase {
   @Test(dataProvider = "validContactsFromXML")
   public void testContactCreation(ContactData contact) {
     Groups groups = app.db().groups();
+    File photo = new File("src/test/resources/TC.png");
     app.goTo().homePage();
     Contacts before = (Contacts) app.db().contacts();
-    File photo = new File("src/test/resources/TC.png");
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();

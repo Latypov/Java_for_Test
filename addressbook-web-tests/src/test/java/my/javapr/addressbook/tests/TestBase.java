@@ -71,9 +71,9 @@ public class TestBase {
       Contacts dbContacts = app.db().contacts();
       Contacts uiContacts = app.contact().all();
       assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname())
-              .withLastname(g.getLastname()).withMobilePhone(g.getMobilePhone())).map(TestBase::cleaned).collect(Collectors.toSet())));
+              .withLastname(g.getLastname()).withMobilePhone(g.getMobilePhone())).collect(Collectors.toSet())));
     }
   }
-
-  private static  Set<ContactData> cleaned(ContactData phone) {return phone.replaceAll("(\\d+\\s\\d+)", "(\\d+)");  }
+//.map(TestBase::cleaned)
+//  private static  Set<ContactData> cleaned(ContactData phone) {return phone.replaceAll("(\\d+\\s\\d+)", "(\\d+)");  }
 }

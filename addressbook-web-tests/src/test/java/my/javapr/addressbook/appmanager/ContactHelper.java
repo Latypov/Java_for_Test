@@ -5,6 +5,8 @@ import my.javapr.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -29,15 +31,23 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getMobilePhone());
 //    attach(By.name("photo"), contactData.getPhoto());
-
+    if (creation) {
+      if (contactData.getGroups().size() >0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group")))
+                .selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+      else {
+        Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
 //    if (isElementPresent(By.name("new_group"))) {
 //      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-//    }
+    }
   }
 
   public void selectContactById(int id) { wd.findElement(By.cssSelector("input[id='" + id +"']")).click();  }
@@ -66,7 +76,7 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact) {
     initContactCreation();
-    fillContactForm(contact);
+    fillContactForm(contact, true);
     submitContactCreation();
     returnToHomePage();
   }
@@ -82,7 +92,7 @@ public class ContactHelper extends HelperBase {
 //    selectContactById(contact.getId());
     initContactModificationById(contact.getId());
 //    initContactModification();
-    fillContactForm(contact);
+    fillContactForm(contact, true);
     submitContactModification();
     returnToHomePage();
   }
