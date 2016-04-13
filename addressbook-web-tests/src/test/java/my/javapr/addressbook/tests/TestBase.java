@@ -49,6 +49,7 @@ public class TestBase {
   public void logTestStart(Method m, Object[] p) {
     logger.info("Start test " + m.getName() + " with parameters " + Arrays.asList(p));
   }
+
   @AfterMethod(alwaysRun = true)
   public void logTestStop(Method m) {
     logger.info("Stop test " + m.getName());
@@ -56,12 +57,12 @@ public class TestBase {
 
   //Edit Configuration: VM options:   -ea -DverifyUI=true
   public void verifyGroupListInUI() {
-  if (Boolean.getBoolean("verifyUI")) {
-    Groups dbGroups = app.db().groups();
-    Groups uiGroups = app.group().all();
-    assertThat(uiGroups, equalTo(dbGroups.stream()
-            .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
-            .collect(Collectors.toSet())));
+    if (Boolean.getBoolean("verifyUI")) {
+      Groups dbGroups = app.db().groups();
+      Groups uiGroups = app.group().all();
+      assertThat(uiGroups, equalTo(dbGroups.stream()
+              .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
+              .collect(Collectors.toSet())));
     }
   }
 
@@ -71,9 +72,8 @@ public class TestBase {
       Contacts dbContacts = app.db().contacts();
       Contacts uiContacts = app.contact().all();
       assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId()).withFirstname(g.getFirstname())
-              .withLastname(g.getLastname()).withMobilePhone(g.getMobilePhone())).collect(Collectors.toSet())));
+              .withLastname(g.getLastname()).withMobilePhone(g.getMobilePhone()
+                      .replaceAll("\\s+", ""))).collect(Collectors.toSet())));
     }
   }
-//.map(TestBase::cleaned)
-//  private static  Set<ContactData> cleaned(ContactData phone) {return phone.replaceAll("(\\d+\\s\\d+)", "(\\d+)");  }
 }

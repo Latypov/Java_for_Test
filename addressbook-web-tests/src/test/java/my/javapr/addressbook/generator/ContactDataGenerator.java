@@ -88,9 +88,10 @@ public class ContactDataGenerator {
       contacts.add(new ContactData().withFirstname(String.format("Peter %s", i))
               .withLastname(String.format("Sidoroff %s", i))
               .withMobilePhone(String.format("4445556767 %s", i))
-              .InGroup(groups.iterator().next()));
+              );
     }
     return contacts;
   }
 }
 
+//.inGroup(groups.iterator().next())
