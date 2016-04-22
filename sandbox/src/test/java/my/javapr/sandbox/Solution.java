@@ -10,22 +10,22 @@ public class Solution {
   public static void main(String args[] ) throws Exception {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
 
-    Scanner scanner = new Scanner(System.in);
-    int numberOfTestCases = scanner.nextInt();
+    Scanner sc = new Scanner(System.in);
+    int numOfTestCases = sc.nextInt();
     int T = 1;
-    while (T<=numberOfTestCases && scanner.hasNextInt()) {
+    while (T<=numOfTestCases && sc.hasNextInt()) {
 
       long n = 1;
+      long input = sc.nextInt();
       long Sum = 0;
-      long input = scanner.nextInt();
       while (n<=input) {
-        long seriesMemberN = n*2 - 1;
+        long seriesMemberN = n*n - (n-1)*(n-1);
         Sum = Sum + seriesMemberN;
         n++;
       }
       long result = Sum%100000007;
       System.out.println(result);
-      }
-    scanner.close();
+    }
+    sc.close();
   }
 }
