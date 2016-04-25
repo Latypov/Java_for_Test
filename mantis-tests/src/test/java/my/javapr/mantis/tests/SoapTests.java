@@ -17,7 +17,7 @@ import static org.testng.AssertJUnit.assertEquals;
 public class SoapTests extends TestBase {
 
   @Test
-  public void testGetProgects() throws MalformedURLException, ServiceException, RemoteException {
+  public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
     Set<Project> projects = app.soap().getProjects();
     System.out.println(projects.size());
     for (Project project : projects) {
@@ -33,6 +33,12 @@ public class SoapTests extends TestBase {
             .withProject(projects.iterator().next());
     Issue created = app.soap().addIssue(issue);
     assertEquals(issue.getSummary(), created.getSummary());
+
+  }
+  @Test
+  public void testRunIfFixed() {
+//    skipIfNotFixed(0000002);
+    System.out.println("Bug fixed");
 
   }
 }

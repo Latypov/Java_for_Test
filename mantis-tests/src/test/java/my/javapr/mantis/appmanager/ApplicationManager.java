@@ -25,6 +25,7 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private SoapHelper soapHelper;
+  private Object mantisConnect;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -95,7 +96,8 @@ public class ApplicationManager {
     return soapHelper;
   }
 
-
-
+  public Object getMantisConnect() {
+    return mantisConnect;
+  }
 }
 
