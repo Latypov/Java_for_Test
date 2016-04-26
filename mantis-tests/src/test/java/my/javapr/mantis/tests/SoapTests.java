@@ -33,12 +33,11 @@ public class SoapTests extends TestBase {
             .withProject(projects.iterator().next());
     Issue created = app.soap().addIssue(issue);
     assertEquals(issue.getSummary(), created.getSummary());
-
   }
+
   @Test
   public void testRunIfFixed() {
 //    skipIfNotFixed(0000002);
     System.out.println("Bug fixed");
-
   }
 }

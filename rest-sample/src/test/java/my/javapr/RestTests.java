@@ -7,11 +7,10 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
-import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
@@ -52,4 +51,20 @@ public class RestTests {
     return parsed.getAsJsonObject().get("issue_id").getAsInt();
   }
 
+
+  @Test
+  public void testRunIfFixed() {
+    skipIfNotFixed(5);
+    System.out.println("Bug fixed");
+  }
+
+  private void skipIfNotFixed(int issueId) {
+    if (isIssueOpen(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
+
+  private boolean isIssueOpen(int issueId) {
+    return false;
+  }
 }

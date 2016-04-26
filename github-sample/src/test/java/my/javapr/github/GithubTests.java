@@ -13,11 +13,10 @@ public class GithubTests {
 
   @Test
   public  void testCommits() throws IOException {
-    Github github = new RtGithub("b89664c0a988b6c40ed35f8f0b2d1174710006f4");
+    Github github = new RtGithub("35a1fdda8830023f4d2eb7600d83a4ace51663b7");
     RepoCommits commits = github.repos().get(new Coordinates.Simple("Latypov", "Java_for_Test")).commits();
     for (RepoCommit commit : commits.iterate(new ImmutableMap.Builder<String, String>().build())) {
       System.out.println(new RepoCommit.Smart(commit).message());
-  }
-
+    }
   }
 }
